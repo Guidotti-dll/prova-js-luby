@@ -1,7 +1,8 @@
-(function () {
+(function (DOM) {
   'use strict';
 
     const app = (function() {
+      let selectedGame = {};
       return {
         init : function init() {
           app.getGamesInfo();
@@ -19,7 +20,27 @@
         },
 
         renderGames: function renderGames(games) {
-          console.log(games);
+          const $gamesDom = DOM('[data-js="games"]').get();
+          games.types.forEach((game)=>{
+            const $button =  document.createElement('button');
+            $button.textContent = game.type
+            $button.style.color = game.color
+            $button.addEventListener('click', () => app.selectGame(event,game))
+            $gamesDom.appendChild($button);
+          })
+        },
+
+        selectGame: function selectGame(event,game) {
+          const $button = event.path[0];
+          if(game.type === selectedGame.type){
+            selectedGame = {}
+            $button.style.background = 'transparent';
+            $button.style.color = game.color;
+          }else {
+            selectedGame = game
+            $button.style.background = game.color;
+            $button.style.color = '#ffffff';
+          }
         },
 
         isReady: function isReady() {
@@ -29,4 +50,4 @@
     }())
 
     app.init();
-})();
+})(window.DOM);

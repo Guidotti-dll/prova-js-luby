@@ -48,6 +48,7 @@ body {
   border-radius: 100px;
   font: italic normal bold 14px Helvetica;
   margin-right: 25px;
+  cursor: pointer;
 }
 
 .content .gameContainer .description {
