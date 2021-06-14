@@ -3,6 +3,7 @@
 
     const app = (function() {
       let selectedGame = {};
+      let games = {};
       return {
         init : function init() {
           app.getGamesInfo();
@@ -14,33 +15,37 @@
           ajax.send();
           ajax.addEventListener('readystatechange', function () {
             if(app.isReady.call(this)){
-              app.renderGames(JSON.parse(ajax.responseText));
+              games = JSON.parse(ajax.responseText);
+              app.renderGames();
             }
           })
         },
 
-        renderGames: function renderGames(games) {
+        renderGames: function renderGames() {
           const $gamesDom = DOM('[data-js="games"]').get();
+          $gamesDom.innerHTML = ''
           games.types.forEach((game)=>{
             const $button =  document.createElement('button');
             $button.textContent = game.type
-            $button.style.color = game.color
+            if(game.type !== selectedGame.type){
+              $button.style.background = 'transparent';
+              $button.style.color = game.color;
+            }else {
+              $button.style.background = game.color;
+              $button.style.color = '#ffffff';
+            }
             $button.addEventListener('click', () => app.selectGame(event,game))
             $gamesDom.appendChild($button);
           })
         },
 
         selectGame: function selectGame(event,game) {
-          const $button = event.path[0];
-          if(game.type === selectedGame.type){
-            selectedGame = {}
-            $button.style.background = 'transparent';
-            $button.style.color = game.color;
+          if(game.type !== selectedGame.type){
+            selectedGame = game;
           }else {
-            selectedGame = game
-            $button.style.background = game.color;
-            $button.style.color = '#ffffff';
+            selectedGame = {}
           }
+          app.renderGames();
         },
 
         isReady: function isReady() {
