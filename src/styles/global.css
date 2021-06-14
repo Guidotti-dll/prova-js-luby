@@ -2,8 +2,10 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Helvetica, sans-serif;
+  font-family: Helvetica Neue, sans-serif;
+  list-style: none;
 }
+
 body {
   background: #f7f7f7;
 }
@@ -11,5 +13,98 @@ body {
 .content {
   width: 100%;
   height: calc(100vh - 150px);
-  padding: 0 200px 0 130px;
+  padding: 45px 200px 45px 130px;
+  display: flex;
+  justify-content: space-between;
+}
+.content .gameContainer {
+  width: 60%;
+}
+
+.content .cartContainer {
+  width: 317px;
+  height: 484px;
+  border: 1px solid #e2e2e2;
+  border-radius: 10px;
+  background: #ffffff;
+  padding: 0 16px 0 19px;
+}
+
+.content .cartContainer h2 {
+  font: italic normal bold 24px/85px Helvetica Neue;
+  letter-spacing: 0px;
+  color: #707070;
+}
+
+.content .cartContainer ul li img {
+  width: 19.6px;
+  height: 24px;
+  margin-right: 14px;
+}
+
+.content .cartContainer ul li {
+  position: relative;
+  margin-bottom: 32px;
+  display: flex;
+  align-items: center;
+}
+
+.content .cartContainer ul li .gameCard {
+  padding: 7px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.content .cartContainer ul li .gameCard p {
+  margin-left: 12px;
+}
+
+.content .cartContainer ul li .gameCard p {
+  font-size: 15px;
+  font-weight: bold;
+  color: #868686;
+}
+
+.content .cartContainer ul li .gameCard p:last-child {
+  font-style: italic;
+  font-size: 16px;
+  margin-top: 6px;
+}
+
+.content .cartContainer ul li .gameCard p:last-child span {
+  color: #868686;
+  font-weight: normal;
+  margin-left: 14px;
+}
+
+.content .cartContainer ul li .gameCard.facil p:last-child {
+  color: #7f3992;
+}
+
+.content .cartContainer ul li .gameCard.mega p:last-child {
+  color: #01ac66;
+}
+
+.content .cartContainer ul li .gameCard.mania p:last-child {
+  color: #f79c31;
+}
+
+.content .cartContainer ul li .gameCard::before {
+  position: absolute;
+  content: "";
+  width: 4px;
+  height: 100%;
+  border-radius: 100px 0px 0px 100px;
+}
+.content .cartContainer ul li .gameCard.facil::before {
+  background: #7f3992;
+}
+
+.content .cartContainer ul li .gameCard.mega::before {
+  background: #01ac66;
+}
+
+.content .cartContainer ul li .gameCard.mania::before {
+  background: #f79c31;
 }
