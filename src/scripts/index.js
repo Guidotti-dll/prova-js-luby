@@ -46,6 +46,14 @@
             selectedGame = {}
           }
           app.renderGames();
+          app.setDescription();
+
+        },
+
+        setDescription: function setDescription() {
+          const $gamesDom = DOM('[data-js="description"]').get();
+          $gamesDom.innerHTML = selectedGame.description ? selectedGame.description : '';
+
         },
 
         isReady: function isReady() {
