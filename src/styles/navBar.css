@@ -4,6 +4,7 @@ nav {
   border-bottom: 2px solid #ebebeb;
   display: flex;
   justify-content: space-between;
+  padding: 0 200px 0 130px;
   color: #707070;
 }
 
