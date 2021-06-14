@@ -81,6 +81,7 @@ body {
   cursor: pointer;
   height: 52px;
   border: 1px solid;
+  color: #27c383;
   background: transparent;
   font-size: 16px;
   line-height: 24px;
@@ -95,6 +96,8 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-around;
+  background: #27c383;
+  color: #ffffff;
 }
 
 .content .gameContainer .actions div {
