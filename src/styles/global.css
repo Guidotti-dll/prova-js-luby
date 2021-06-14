@@ -17,8 +17,97 @@ body {
   display: flex;
   justify-content: space-between;
 }
+
 .content .gameContainer {
   width: 60%;
+  color: #868686;
+  font-size: 17px;
+  line-height: 24px;
+}
+
+.content .gameContainer .gameHeader h1 {
+  color: #707070;
+  font-size: 24px;
+  line-height: 85px;
+}
+
+.content .gameContainer .gameHeader h1 span {
+  font-weight: normal;
+}
+
+.content .gameContainer .selectGames strong {
+  color: #868686;
+  font-size: 17px;
+  line-height: 70px;
+}
+
+.content .gameContainer .selectGames .games button {
+  width: 113px;
+  height: 34px;
+  border: 2px solid;
+  border-radius: 100px;
+  font: italic normal bold 14px Helvetica;
+  margin-right: 25px;
+}
+
+.content .gameContainer .description {
+  margin: 27px 0;
+}
+
+.content .gameContainer .gameNumbers {
+  margin-bottom: 44px;
+}
+
+.content .gameContainer .gameNumbers button {
+  cursor: pointer;
+  width: 65px;
+  height: 65px;
+  border: none;
+  background: #adc0c4;
+  border-radius: 50%;
+  color: #ffffff;
+  font: normal normal bold 20px/24px Helvetica;
+  margin: 0 12px 20px 0;
+}
+
+.content .gameContainer .actions {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.content .gameContainer .actions button {
+  cursor: pointer;
+  height: 52px;
+  border: 1px solid;
+  background: transparent;
+  font-size: 16px;
+  line-height: 24px;
+  font-family: Helvetica;
+  font-weight: bold;
+  padding: 16px;
+  border-radius: 10px;
+}
+
+.content .gameContainer .actions .addToCardButton {
+  width: 209px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.content .gameContainer .actions div {
+  width: 50%;
+  display: flex;
+}
+
+.content .gameContainer .actions div button:first-child {
+  margin-right: 25px;
+}
+
+.content .gameContainer .actions button img {
+  width: 26px;
 }
 
 .content .cartContainer {
@@ -67,7 +156,7 @@ body {
 }
 
 .content .cartContainer h2 {
-  font: italic normal bold 24px/85px Helvetica Neue;
+  font: italic normal bold 24px/85px Helvetica;
   letter-spacing: 0px;
   color: #707070;
 }
