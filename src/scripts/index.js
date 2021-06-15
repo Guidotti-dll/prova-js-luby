@@ -14,7 +14,9 @@
 
         initEvents: function initEvents() {
           const $clearGameButton = DOM('[data-js="clearGameButton"]').get();
+          const $completeGameButton = DOM('[data-js="completeGameButton"]').get();
           $clearGameButton.addEventListener('click', app.clearGame);
+          $completeGameButton.addEventListener('click', app.completeGame);
         },
 
         getGamesInfo: function getGamesInfo() {
@@ -53,6 +55,7 @@
           }else {
             selectedGame = {}
           }
+          app.clearGame();
           app.renderGames();
           app.setDescription();
           app.renderNumbersButton();
@@ -74,10 +77,9 @@
           }
           for (let index = 1; index <= selectedGame.range; index++) {
             const $button =  document.createElement('button');
-            $button.textContent = index
-            $button.addEventListener('click', () => app.addNumber(event))
+            $button.textContent = index;
+            $button.addEventListener('click', () => app.addNumber(event));
             $gameNumbers.appendChild($button);
-            
           }
         },
 
@@ -102,6 +104,29 @@
           app.renderNumbersButton();
         },
 
+        completeGame: function completeGame() {
+          while (selectedGame['max-number'] > gameNumbers.length && selectedGame) {
+            const selectedNumber = app.getRandomIntInclusive(0,selectedGame.range);
+            const hasInArray = gameNumbers.some((item) => {
+              return item === selectedNumber;
+            });
+            if (!hasInArray && selectedNumber !== 0) {
+              gameNumbers.push(selectedNumber);
+            }
+          }
+          const $gameNumbers = DOM('[data-js="gameNumbers"]').get();
+          gameNumbers.forEach((item) => {
+            const $button = $gameNumbers.children[item-1];
+            $button.style.background = selectedGame.color;
+          });
+        },
+
+        getRandomIntInclusive:function getRandomIntInclusive(min, max) {
+          min = Math.ceil(min);
+          max = Math.floor(max);
+          return Math.floor(Math.random() * (max - min + 1)) + min;
+        },
+        
         isReady: function isReady() {
           return this.readyState === 4 && this.status === 200;
         },
