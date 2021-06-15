@@ -9,6 +9,12 @@
       return {
         init : function init() {
           app.getGamesInfo();
+          app.initEvents();
+        },
+
+        initEvents: function initEvents() {
+          const $clearGameButton = DOM('[data-js="clearGameButton"]').get();
+          $clearGameButton.addEventListener('click', app.clearGame);
         },
 
         getGamesInfo: function getGamesInfo() {
@@ -89,6 +95,11 @@
             gameNumbers.push(selectedNumber);
             $numberButton.style.background = selectedGame.color;
           }
+        },
+
+        clearGame: function clearGame() {
+          gameNumbers = [];
+          app.renderNumbersButton();
         },
 
         isReady: function isReady() {
