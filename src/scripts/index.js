@@ -91,7 +91,7 @@
             $numberButton.style.background = '#adc0c4'
             const numberIndex = gameNumbers.findIndex(number => number === selectedNumber );
             gameNumbers.splice(numberIndex, 1);
-          } else {
+          } else if(selectedGame['max-number'] > gameNumbers.length) {
             gameNumbers.push(selectedNumber);
             $numberButton.style.background = selectedGame.color;
           }
