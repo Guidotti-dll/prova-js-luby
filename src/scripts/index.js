@@ -77,7 +77,7 @@
           $gameNumbers.innerHTML= '';
           if(!selectedGame.range){
             $gameNumbers.innerHTML= '';
-            return;
+            alert(`Falta escolher mais ${selectedGame['max-number'] - gameNumbers.length} números`);
           }
           for (let index = 1; index <= selectedGame.range; index++) {
             const $button =  document.createElement('button');
@@ -88,9 +88,13 @@
         },
 
         addToCart: function addToCart() {
-          if (!selectedGame || selectedGame['max-number'] !== gameNumbers.length) {
+          if (!selectedGame ) {
             alert("Você deve selecionar um jogo e escolher os números em que vai apostar");
             return
+          }
+          if (selectedGame['max-number'] !== gameNumbers.length) {
+            alert(`Falta escolher mais ${selectedGame['max-number'] - gameNumbers.length} números`);
+            return;
           }
           const $cartGames = DOM('[data-js="cartGames"]').get();
           totalValueBet += selectedGame.price;
@@ -105,6 +109,7 @@
           `
           DOM('img').on('click',app.removeGame)
           app.showTotalValueBet();
+          alert(`Falta escolher mais ${selectedGame['max-number'] - gameNumbers.length} números`);
           app.clearGame();
         },
 
@@ -137,6 +142,7 @@
           const hasInArray = gameNumbers.some((item) => {
             return item === selectedNumber;
           });
+          
           if (hasInArray) {
             $numberButton.style.background = '#adc0c4'
             const numberIndex = gameNumbers.findIndex(number => number === selectedNumber );
@@ -144,7 +150,11 @@
           } else if(selectedGame['max-number'] > gameNumbers.length) {
             $numberButton.style.background = selectedGame.color;
             gameNumbers.push(selectedNumber)
+          } else if (selectedGame['max-number'] === gameNumbers.length) {
+            alert(`Você não pode selecionar mais números!`);
+            return;
           }
+          
         },
 
         clearGame: function clearGame() {
