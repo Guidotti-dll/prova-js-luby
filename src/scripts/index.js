@@ -77,7 +77,6 @@
           $gameNumbers.innerHTML= '';
           if(!selectedGame.range){
             $gameNumbers.innerHTML= '';
-            alert(`Falta escolher mais ${selectedGame['max-number'] - gameNumbers.length} números`);
           }
           for (let index = 1; index <= selectedGame.range; index++) {
             const $button =  document.createElement('button');
@@ -88,7 +87,6 @@
         },
 
         addToCart: function addToCart() {
-          console.log(selectedGame);
           if (!selectedGame.type) {
             alert("Você deve selecionar um jogo e escolher os números em que vai apostar");
             return;
