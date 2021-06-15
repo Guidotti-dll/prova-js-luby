@@ -197,6 +197,7 @@
             return;
           }
           app.resetValues()
+          window.scrollTo(0, 0);
           alert("Aposta realizada com sucesso!!")
         },
         
