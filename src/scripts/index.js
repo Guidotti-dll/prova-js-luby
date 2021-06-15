@@ -106,8 +106,9 @@
           $total.innerHTML = `
           <p><strong>CART</strong> Total: ${app.formatPrice(totalValueBet)}</p>
           `
-          const li = $cartGames.children[$cartGames.children.length - 1]
-          app.addRemoveButton(li);
+          DOM('img').on('click',app.removeGame)
+          // const li = $cartGames.children[$cartGames.children.length - 1]
+          // app.addRemoveButton(li);
           app.clearGame();
         },
 
