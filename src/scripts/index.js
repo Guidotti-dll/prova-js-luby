@@ -17,9 +17,11 @@
           const $clearGameButton = DOM('[data-js="clearGameButton"]').get();
           const $completeGameButton = DOM('[data-js="completeGameButton"]').get();
           const $addToCartButton = DOM('[data-js="addToCartButton"]').get();
+          const $saveGameButton = DOM('[data-js="saveGameButton"]').get();
           $clearGameButton.addEventListener('click', app.clearGame);
           $completeGameButton.addEventListener('click', app.completeGame);
           $addToCartButton.addEventListener('click', app.addToCart);
+          $saveGameButton.addEventListener('click', app.saveGame);
         },
 
         getGamesInfo: function getGamesInfo() {
@@ -113,9 +115,13 @@
         
         showTotalValueBet: function showTotalValueBet(value) {
           const $total = DOM('[data-js="total"]').get();
-          $total.innerHTML = `
-          <p><strong>CART</strong> Total: ${app.formatPrice(totalValueBet)}</p>
-          `
+          if (totalValueBet !== 0) {
+            $total.innerHTML = `
+            <p><strong>CART</strong> Total: ${app.formatPrice(totalValueBet)}</p>
+            `
+            return;
+          }
+          $total.innerHTML = ``
         },
 
         removeGame: function removeGame(event) {
@@ -132,12 +138,11 @@
           const hasInArray = gameNumbers.some((item) => {
             return item === selectedNumber;
           });
-          if (hasInArray) {
+          if (hasInArray) {const $cartGames = DOM('[data-js="cartGames"]').get();
             $numberButton.style.background = '#adc0c4'
             const numberIndex = gameNumbers.findIndex(number => number === selectedNumber );
             gameNumbers.splice(numberIndex, 1);
           } else if(selectedGame['max-number'] > gameNumbers.length) {
-            gameNumbers.push(selectedNumber);
             $numberButton.style.background = selectedGame.color;
           }
         },
@@ -168,6 +173,27 @@
           min = Math.ceil(min);
           max = Math.floor(max);
           return Math.floor(Math.random() * (max - min + 1)) + min;
+        },
+
+        saveGame: function saveGame() {
+          if (totalValueBet === 0) {
+            alert("Seu carrinho está vazio. Aposte um pouco, só não ganha quem não joga!!");
+            return;
+          }
+          if (totalValueBet < games.types[0]["min-cart-value"]) {
+            alert(`O valor mínimo de aposta é ${app.formatPrice(games.types[0]["min-cart-value"])}`);
+            return;
+          }
+          app.resetValues()
+          alert("Aposta realizada com sucesso!!")
+        },
+        
+        resetValues: function resetValues() {
+          selectedGame = {};
+          gameNumbers = [];
+          totalValueBet = 0;
+          DOM('[data-js="cartGames"]').get().innerHTML = ``;
+          app.showTotalValueBet();
         },
         
         isReady: function isReady() {
