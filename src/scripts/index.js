@@ -164,6 +164,9 @@
         },
 
         completeGame: function completeGame() {
+          if (!selectedGame.type) {
+            alert("Você deve escolher um jogo antes de completa-lo!!")
+          }
           while (selectedGame['max-number'] > gameNumbers.length && selectedGame) {
             const selectedNumber = app.getRandomIntInclusive(0,selectedGame.range);
             const hasInArray = gameNumbers.some((item) => {
