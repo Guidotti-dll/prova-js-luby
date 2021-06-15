@@ -107,17 +107,11 @@
           <p><strong>CART</strong> Total: ${app.formatPrice(totalValueBet)}</p>
           `
           DOM('img').on('click',app.removeGame)
-          // const li = $cartGames.children[$cartGames.children.length - 1]
-          // app.addRemoveButton(li);
           app.clearGame();
         },
 
         formatPrice: function formatPrice(value) {
           return value.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})
-        },
-
-        addRemoveButton: function addRemoveButton(li) {
-          li.children[0].addEventListener('click', () => app.removeGame(event));
         },
 
         removeGame: function removeGame(event) {
