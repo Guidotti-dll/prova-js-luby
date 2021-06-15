@@ -184,6 +184,8 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  border-left: 4px solid;
+  border-radius: 4px;
 }
 
 .content .cartContainer ul li .gameCard p {
@@ -206,35 +208,4 @@ body {
   color: #868686;
   font-weight: normal;
   margin-left: 14px;
-}
-
-.content .cartContainer ul li .gameCard.facil p:last-child {
-  color: #7f3992;
-}
-
-.content .cartContainer ul li .gameCard.mega p:last-child {
-  color: #01ac66;
-}
-
-.content .cartContainer ul li .gameCard.mania p:last-child {
-  color: #f79c31;
-}
-
-.content .cartContainer ul li .gameCard::before {
-  position: absolute;
-  content: "";
-  width: 4px;
-  height: 100%;
-  border-radius: 100px 0px 0px 100px;
-}
-.content .cartContainer ul li .gameCard.facil::before {
-  background: #7f3992;
-}
-
-.content .cartContainer ul li .gameCard.mega::before {
-  background: #01ac66;
-}
-
-.content .cartContainer ul li .gameCard.mania::before {
-  background: #f79c31;
 }

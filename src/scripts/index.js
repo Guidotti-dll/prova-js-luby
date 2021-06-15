@@ -5,6 +5,7 @@
       let selectedGame = {};
       let games = {};
       let gameNumbers = [];
+      let totalValueBet = 0;
 
       return {
         init : function init() {
@@ -15,8 +16,10 @@
         initEvents: function initEvents() {
           const $clearGameButton = DOM('[data-js="clearGameButton"]').get();
           const $completeGameButton = DOM('[data-js="completeGameButton"]').get();
+          const $addToCartButton = DOM('[data-js="addToCartButton"]').get();
           $clearGameButton.addEventListener('click', app.clearGame);
           $completeGameButton.addEventListener('click', app.completeGame);
+          $addToCartButton.addEventListener('click', app.addToCart);
         },
 
         getGamesInfo: function getGamesInfo() {
@@ -81,6 +84,33 @@
             $button.addEventListener('click', () => app.addNumber(event));
             $gameNumbers.appendChild($button);
           }
+        },
+
+        addToCart: function addToCart() {
+          if (!selectedGame || selectedGame['max-number'] !== gameNumbers.length) {
+            return
+          }
+          
+          const $cartGames = DOM('[data-js="cartGames"]').get();
+          const $total = DOM('[data-js="total"]').get();
+          totalValueBet += selectedGame.price;
+          $cartGames.innerHTML += `
+            <li>
+              <img src="../assets/icons/trash.svg" alt="Trash Icon">
+              <div class="gameCard" style="border-color: ${selectedGame.color}">
+              <p>${gameNumbers.join(', ')}</p>
+                <p style="color: ${selectedGame.color}">${selectedGame.type} <span>${app.formatPrice(selectedGame.price)}</span></p>
+              </div>
+            </li>
+          `
+          $total.innerHTML = `
+          <p><strong>CART</strong> Total: ${app.formatPrice(totalValueBet)}</p>
+          `
+          app.clearGame();
+        },
+
+        formatPrice: function formatPrice(value) {
+          return value.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})
         },
 
         addNumber: function addNumber(event) {
