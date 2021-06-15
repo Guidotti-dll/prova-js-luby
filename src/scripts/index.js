@@ -88,7 +88,8 @@
         },
 
         addToCart: function addToCart() {
-          if (!selectedGame ) {
+          console.log(selectedGame);
+          if (!selectedGame.type) {
             alert("Você deve selecionar um jogo e escolher os números em que vai apostar");
             return;
           }
