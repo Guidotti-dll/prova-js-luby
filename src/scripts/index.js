@@ -96,13 +96,16 @@
             alert(`Falta escolher mais ${selectedGame['max-number'] - gameNumbers.length} números`);
             return;
           }
+          const orderedNumbers = gameNumbers.sort((num1, num2) => {
+            return num1 > num2 ? 1 : num1 < num2 ? -1 : 0;
+          })
           const $cartGames = DOM('[data-js="cartGames"]').get();
           totalValueBet += selectedGame.price;
           $cartGames.innerHTML += `
             <li>
             <img src="../assets/icons/trash.svg" alt="Trash Icon">
               <div class="gameCard" style="border-color: ${selectedGame.color}">
-              <p>${gameNumbers.join(', ')}</p>
+              <p>${orderedNumbers.join(', ')}</p>
                 <p style="color: ${selectedGame.color}">${selectedGame.type} <span>${app.formatPrice(selectedGame.price)}</span></p>
               </div>
             </li>
