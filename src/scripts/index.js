@@ -92,31 +92,38 @@
           }
           
           const $cartGames = DOM('[data-js="cartGames"]').get();
-          const $total = DOM('[data-js="total"]').get();
           totalValueBet += selectedGame.price;
           $cartGames.innerHTML += `
             <li>
-              <img src="../assets/icons/trash.svg" alt="Trash Icon">
+            <img src="../assets/icons/trash.svg" alt="Trash Icon">
               <div class="gameCard" style="border-color: ${selectedGame.color}">
               <p>${gameNumbers.join(', ')}</p>
                 <p style="color: ${selectedGame.color}">${selectedGame.type} <span>${app.formatPrice(selectedGame.price)}</span></p>
               </div>
             </li>
           `
-          $total.innerHTML = `
-          <p><strong>CART</strong> Total: ${app.formatPrice(totalValueBet)}</p>
-          `
           DOM('img').on('click',app.removeGame)
+          app.showTotalValueBet();
           app.clearGame();
         },
 
         formatPrice: function formatPrice(value) {
           return value.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})
         },
+        
+        showTotalValueBet: function showTotalValueBet(value) {
+          const $total = DOM('[data-js="total"]').get();
+          $total.innerHTML = `
+          <p><strong>CART</strong> Total: ${app.formatPrice(totalValueBet)}</p>
+          `
+        },
 
         removeGame: function removeGame(event) {
           const $removeButton = event.path[0];
-          $removeButton.parentNode.parentNode.removeChild($removeButton.parentNode)
+          const $removedLi = $removeButton.parentNode;
+          totalValueBet -= parseFloat($removedLi.lastElementChild.lastElementChild.lastElementChild.textContent.slice(3).replace(',','.'));
+          $removeButton.parentNode.parentNode.removeChild($removeButton.parentNode);
+          app.showTotalValueBet();
         },
 
         addNumber: function addNumber(event) {
