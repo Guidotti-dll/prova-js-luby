@@ -90,9 +90,9 @@
         addToCart: function addToCart() {
           if (!selectedGame ) {
             alert("Você deve selecionar um jogo e escolher os números em que vai apostar");
-            return
+            return;
           }
-          if (selectedGame['max-number'] !== gameNumbers.length) {
+          if (  selectedGame['max-number'] > gameNumbers.length) {
             alert(`Falta escolher mais ${selectedGame['max-number'] - gameNumbers.length} números`);
             return;
           }
@@ -109,7 +109,6 @@
           `
           DOM('img').on('click',app.removeGame)
           app.showTotalValueBet();
-          alert(`Falta escolher mais ${selectedGame['max-number'] - gameNumbers.length} números`);
           app.clearGame();
         },
 
