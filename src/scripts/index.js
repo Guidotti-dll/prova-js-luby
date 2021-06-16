@@ -140,7 +140,8 @@
             `;
           return;
         }
-        $total.innerHTML = ``;
+        $total.innerHTML = `
+        <p>Carrinho vazio</p>`;
       },
 
       removeGame: function removeGame(event) {
@@ -180,6 +181,7 @@
       },
 
       clearGame: function clearGame() {
+        // debugger;
         gameNumbers = [];
         app.renderNumbersButton();
       },
@@ -241,8 +243,7 @@
       },
 
       resetValues: function resetValues() {
-        selectedGame = {};
-        gameNumbers = [];
+        app.clearGame();
         totalValueBet = 0;
         DOM('[data-js="cartGames"]').get().innerHTML = ``;
         app.showTotalValueBet();
