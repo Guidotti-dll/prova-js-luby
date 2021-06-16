@@ -1,69 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TGL</title>
-  <link rel="stylesheet" href="styles/global.css">
-  <link rel="stylesheet" href="styles/navBar.css">
-  <link rel="stylesheet" href="styles/main.css">
-  <link rel="stylesheet" href="styles/footer.css">
-</head>
-<body>
-  <div class="content">
-    <nav>
-      <div class="navContainer">
-        <h1>TGL</h1>
-        <a href="#">Home</a>
-      </div>
-      <div class="navContainer left">
-        <a href="#">Account</a>
-        <a href="#">Log out<img src="../assets/icons/grey-arrow-right.svg"></a>
-      </div>
-    </nav>
-    <main>
-      <div class="gameContainer">
-        <div class="gameHeader">
-          <h1>NEW BET <span>FOR MEGA-SENA</span></h1>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TGL</title>
+    <link rel="stylesheet" href="styles/global.css" />
+    <link rel="stylesheet" href="styles/navBar.css" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="stylesheet" href="styles/footer.css" />
+  </head>
+  <body>
+    <div class="content">
+      <nav>
+        <div class="navContainer">
+          <h1>TGL</h1>
+          <a href="#">Home</a>
         </div>
-        <div class="selectGames">
-          <strong>Choose a game</strong>
-          <div class="games" data-js="games">
-            
+        <div class="navContainer left">
+          <a href="#">Account</a>
+          <a href="#"
+            >Log out<img src="../assets/icons/grey-arrow-right.svg"
+          /></a>
+        </div>
+      </nav>
+      <main>
+        <div class="gameContainer">
+          <div class="gameHeader">
+            <h1>NEW BET <span>FOR MEGA-SENA</span></h1>
+          </div>
+          <div class="selectGames">
+            <strong>Choose a game</strong>
+            <div class="games" data-js="games"></div>
+          </div>
+          <div class="description">
+            <strong>Fill Your bet</strong>
+            <p data-js="description"></p>
+          </div>
+          <div class="gameNumbers" data-js="gameNumbers"></div>
+          <div class="actions">
+            <div>
+              <button class="completeGameButton" data-js="completeGameButton">
+                Complete game
+              </button>
+              <button class="clearGameButton" data-js="clearGameButton">
+                Clear game
+              </button>
+            </div>
+            <button class="addToCardButton" data-js="addToCartButton">
+              <img
+                src="../assets/icons/shopping-cart .svg"
+                alt="shopping-cart"
+              />
+              Add to card
+            </button>
           </div>
         </div>
-        <div class="description">
-          <strong>Fill Your bet</strong>
-          <p data-js="description"></p>
-        </div>
-        <div class="gameNumbers" data-js="gameNumbers">
-        </div>
-        <div class="actions">
-          <div>
-            <button class="completeGameButton" data-js="completeGameButton">Complete game</button>
-            <button class="clearGameButton" data-js="clearGameButton">Clear game</button>
+        <div class="cartContainer">
+          <div class="cardContent">
+            <h2>CART</h2>
+            <ul data-js="cartGames"></ul>
+            <div class="total" data-js="total"></div>
           </div>
-          <button class="addToCardButton" data-js="addToCartButton"><img src="../assets/icons/shopping-cart .svg" alt="shopping-cart"> Add to card</button>
-        </div>
-      </div>
-      <div class="cartContainer">
-        <div class="cardContent">
-          <h2>CART</h2>
-          <ul data-js="cartGames">
-          </ul>
-          <div class="total" data-js="total">
+
+          <div class="save">
+            <button data-js="saveGameButton">
+              Save<img
+                src="../assets/icons/green-arrow-right.svg"
+                alt="green-arrow-right"
+              />
+            </button>
           </div>
         </div>
-  
-        <div class="save">
-          <button data-js="saveGameButton">Save<img src="../assets/icons/green-arrow-right.svg" alt="green-arrow-right"></button>
-        </div>
-      </div>
-    </main>
-    <footer>Copyright 2020 Luby Software</footer>
-  </div>
-  <script src="scripts/dom.js"></script>
-  <script src="scripts/index.js"></script>
-</body>
+      </main>
+      <footer>Copyright 2020 Luby Software</footer>
+    </div>
+    <script src="scripts/dom.js"></script>
+    <script src="scripts/index.js"></script>
+  </body>
 </html>
